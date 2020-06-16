@@ -22,7 +22,7 @@ Request type:
 - GET
 ```
 
-* **DATA Params (POST data)** 
+* **DATA Params** 
 ```
 None
 ```
