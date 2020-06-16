@@ -3,9 +3,8 @@
 ```
 - Api will return the real-time weather data for a query.
 ```
-* **Resource URL** <br/>
- <a href>https://weatherstack.com/documentation</a>
-
+* **URL** <br/>
+    * /api/currentWeatherDetails/`:locationQuery`
 * **Resource Information**
 
     * Response Format: `JSON`
@@ -16,20 +15,11 @@
     * /api/currentWeatherDetails/`:locationQuery`
     <br/>
         * **Required**: The `locationQuery` can be passed location identifiers in order to get back the weather data.
-      
-        `1. Location Name` <br/>
-            locationQuery = [string]
-
-       `2. UK/Canada/US ZIP Code` <br/>
-            locationQuery = [integer] </br>
-
-        `3. Coordinates (Lat/Lon)`</br>
+    
+        `1. Coordinates (Lat/Lon)`</br>
             locationQuery = [number, number]
 
-        `4. IP Address`</br>
-            locationQuery = [number]
-
-        `5. IP address (Auto-Fetch)` </br>
+        `2. IP address (Auto-Fetch)` </br>
             locationQuery = [number]
  
 * **METHOD** 
@@ -71,7 +61,7 @@ None
     "info": "Your API request failed. Please try again or contact support."
   }
 }   
-  * **Code:** 101 (MISSING ACCESS KEY) - Invalid KEY<br />
+  * **Code:** 101 (MISSING ACCESS KEY) - Invalid API KEY<br />
       **Content:** 
 {
   "success": false,
