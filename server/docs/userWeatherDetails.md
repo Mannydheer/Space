@@ -1,10 +1,10 @@
 **Current Weather API  **
 ----
 ```
-- Api will return the real-time weather data for a query.
+- Api will return the real-time weather data for the current user IP-address.
 ```
 * **URL** <br/>
-    * /api/currentWeatherDetails/`:locationQuery`
+    * /api/userWeatherDetails`
 * **Resource Information**
 
     * Response Format: `JSON`
@@ -12,14 +12,10 @@
     * Rate Limited? `1000requests/month`
 `
 * **URL Params** <br/>
-    * /api/currentWeatherDetails/`:locationQuery`
+    * /api/currentWeatherDetails/`
     <br/>
-        * **Required**: The `locationQuery` can be passed location identifiers in order to get back the weather data.
-    
-        `1. Coordinates (Lat/Lon)`</br>
-            locationQuery = [number, number]
-
-        `2. IP address (Auto-Fetch)` </br>
+        * **Required**: 
+        `1. IP address (Auto-Fetch)` </br>
             locationQuery = [number]
  
 * **METHOD** 
@@ -31,12 +27,51 @@ Request type:
 ```
 None
 ```
-
 * **Success Response:**
   * **Code:** 200 Success <br />
     **Content:** 
-    <img src="./Images/currentWeather.png"></img>
-    
+    {
+  "request": {
+    "type": "IP",
+    "query": "70.53.187.82",
+    "language": "en",
+    "unit": "m"
+  },
+  "location": {
+    "name": "Saint-Michel",
+    "country": "Canada",
+    "region": "Quebec",
+    "lat": "45.567",
+    "lon": "-73.617",
+    "timezone_id": "America\/Toronto",
+    "localtime": "2020-06-16 00:32",
+    "localtime_epoch": 1592267520,
+    "utc_offset": "-4.0"
+  },
+  "current": {
+    "observation_time": "04:32 AM",
+    "temperature": 18,
+    "weather_code": 116,
+    "weather_icons": [
+      "https:\/\/assets.weatherstack.com\/images\/wsymbols01_png_64\/wsymbol_0004_black_low_cloud.png"
+    ],
+    "weather_descriptions": [
+      "Partly cloudy"
+    ],
+    "wind_speed": 6,
+    "wind_degree": 271,
+    "wind_dir": "W",
+    "pressure": 1030,
+    "precip": 0,
+    "humidity": 63,
+    "cloudcover": 8,
+    "feelslike": 18,
+    "uv_index": 1,
+    "visibility": 10,
+    "is_day": "no"
+  }
+}
+   
 `
 
 * **Error Response:**
@@ -77,8 +112,6 @@ None
 * **Sample Call** 
 
   ```javascript
-  let locationQuery = {lat: 40.7831,lng: -73.9712}
-
-    fetch(`/api/currentWeatherDetails/${locationQuery}`)
+    fetch(`/api/userWeatherDetails`)
   ```
 

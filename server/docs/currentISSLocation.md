@@ -5,8 +5,7 @@
 - Returns the latitude and longitude and unix timestamp. 
 ```
 * **Resource URL** <br/>
- <a href>http://open-notify.org/Open-Notify-API/ISS-Location-Now/</a>
-
+    * /api/currentISSLocation
 * **Resource Information**
 
     * Response Format: `JSON`
@@ -15,7 +14,6 @@
 `
 * **URL** <br/>
  /api/currentISSLocation
-
 * **METHOD** 
 ```
 Request type: 
