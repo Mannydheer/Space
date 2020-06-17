@@ -24,7 +24,6 @@ None
 
 * **Success Response:**
 ```javascript
-Code: 200
 Content: {
   status: 200,
   message: "Success getting ISS space station coordinates"m
@@ -35,15 +34,15 @@ Content: {
   }
 }
 ```
-
 * **Error Response:**
 ```javascript
-Code: 404 - NOT FOUND
-Content: null || undefined.
-
+  Code: 404 - NOT FOUND
+  Content: null || undefined.
 ```
-
-
+```javascript
+  Code: 502 BAD GATEWAY
+  Content: {status: 404, error: Received invalid response from API.}
+```
 * **Sample Call** 
 
   ```javascript

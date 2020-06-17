@@ -29,7 +29,6 @@ None
 
 * **Success Response:**
 ```javascript
-  Code: 200 Success 
   Content: {
     status: 200,
     message: "Success getting weather Details",
@@ -49,13 +48,21 @@ None
   Content: {status: 400, error: Missing/Invalid coordinates.}
 ```
 ```javascript
+  Code: 401 UNAUTHORIZED
+  Content: {status: 401, error: Invalid API key.}
+```
+```javascript
+  Code: 404 - NOT FOUND
+  Content: null || undefined.
+```
+```javascript
   Code: 502 BAD GATEWAY
   Content: {status: 404, error: Received invalid response from API.}
 ```
 
 
-* **Sample Call** 
 
+* **Sample Call** 
 ```javascript
 let locationQuery = {lat: 40.7831,lng: -73.9712};
 
