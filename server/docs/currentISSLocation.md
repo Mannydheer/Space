@@ -7,10 +7,7 @@
 * **Resource URL** <br/>
     * /api/currentISSLocation
 * **Resource Information**
-
-    * Response Format: `JSON`
-    * Requires authentication? `No`
-    * Rate Limited? `No, but best to do requests once every 5 seconds. (Avoid server strain)`
+    * Response Format: `JSON``
 `
 * **URL** <br/>
  /api/currentISSLocation
@@ -26,20 +23,21 @@ None
 ```
 
 * **Success Response:**
-```
+```javascript
 Code: 200
 Content: {
-  "iss_position": {
-    "longitude": "-30.2983",
-    "latitude": "4.6062"
-  },
-  "timestamp": 1592250551,
-  "message": "success"
+  status: 200,
+  message: "Success getting ISS space station coordinates"m
+  spaceLocationInformation: {
+    lon: -30.2983,
+    lat: 4.6062
+    timestamp: 1592250551,
+  }
 }
 ```
 
 * **Error Response:**
-```
+```javascript
 Code: 404 - NOT FOUND
 Content: null || undefined.
 

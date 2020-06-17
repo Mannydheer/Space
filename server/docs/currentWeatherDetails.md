@@ -31,45 +31,14 @@ None
 ```javascript
   Code: 200 Success 
   Content: {
-  "request": {
-    "type": "City",
-    "query": "Lagos, Nigeria",
-    "language": "en",
-    "unit": "m"
-  },
-  "location": {
-    "name": "Lagos",
-    "country": "Nigeria",
-    "region": "Lagos",
-    "lat": "6.453",
-    "lon": "3.396",
-    "timezone_id": "Africa\/Lagos",
-    "localtime": "2020-06-17 01:25",
-    "localtime_epoch": 1592357100,
-    "utc_offset": "1.0"
-  },
-  "current": {
-    "observation_time": "12:25 AM",
-    "temperature": 27,
-    "weather_code": 116,
-    "weather_icons": [
-      "https:\/\/assets.weatherstack.com\/images\/wsymbols01_png_64\/wsymbol_0004_black_low_cloud.png"
-    ],
-    "weather_descriptions": [
-      "Partly cloudy"
-    ],
-    "wind_speed": 0,
-    "wind_degree": 212,
-    "wind_dir": "SSW",
-    "pressure": 1012,
-    "precip": 0,
-    "humidity": 89,
-    "cloudcover": 25,
-    "feelslike": 31,
-    "uv_index": 1,
-    "visibility": 10,
-    "is_day": "no"
-  }
+    status: 200,
+    message: "Success getting weather Details",
+    weatherInformation:
+    country: "Nigeria",
+    region: "Lagos",
+    lat: 6.453,
+    lon: 3.396,
+    temperature: 27,
 }
      
 ```
