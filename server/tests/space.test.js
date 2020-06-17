@@ -42,7 +42,10 @@ describe("GET /api/currentISSLocation", () => {
 describe("GET /api/currentISSLocation", () => {
   //test 2
   test("should will check if the 3rd party party fails to send data", async () => {
-    let apiSpaceData = null;
+    let apiSpaceData = {
+      spaceData: null,
+      error: "Failed to get lng/lat for ISS space station location.",
+    };
     nock("http://api.open-notify.org")
       .get("/iss-now.json")
       .reply(502, apiSpaceData);
@@ -51,6 +54,6 @@ describe("GET /api/currentISSLocation", () => {
     const response = await request.get("/api/currentISSLocation");
 
     expect(response.status).toBe(502);
-    expect(response.body).toEqual(expectedResponse);
+    expect(response.body.spaceData).toEqual(expectedResponse);
   });
 });
