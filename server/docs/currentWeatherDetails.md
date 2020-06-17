@@ -5,7 +5,7 @@ Api will return the real-time weather data for a query with coordinates passed a
 ```
 **ENDPOINT** 
 ```
-/api/currentWeatherDetails/?lng=lngValue&lat=latValue
+/api/currentWeatherDetails/?lng=lng&lat=lat
 ```
 
 **Resource Information**
@@ -17,8 +17,8 @@ Response Format: JSON
 #### URL Parameters
 Field|Required|description
 :-----:|:-----:|:-----:
-lngValue|yes| Value of the longitude position.
-latValue|yes| Value of the latitude position.
+lng|yes| Value of the longitude position.
+lat|yes| Value of the latitude position.
 
 **METHOD** 
 ```
