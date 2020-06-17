@@ -33,10 +33,10 @@ Request type:
 ```javascript
 Content: {
   status: 200,
-  message: "Success getting ISS space station coordinates"m
+  message: "Success getting ISS space station coordinates",
   spaceLocationInformation: {
   lon: -30.2983,
-  lat: 4.6062
+  lat: 4.6062,
   timestamp: 1592250551,
   }
 }
@@ -44,11 +44,6 @@ Content: {
 
 **Error Response:**
 No data returned from the API.
-
-```javascript
-  Code: 404 - NOT FOUND
-  Content: {status: 404, error: "No data available"}
-```
 
 Request to the API failed.
 
