@@ -39,22 +39,18 @@ describe("GET /api/current-iss-location", () => {
   });
 });
 
+//Bad Gateway 502
 describe("GET /api/current-iss-location", () => {
   //test 2
-  test("should will check if the ISS API fails to send data", async () => {
-    let apiSpaceData = {
-      spaceData: null,
-      error: "Failed to get lng/lat for ISS space station location.",
-    };
+  test("should check if the ISS API is down for any unexpected reason.", async () => {
     nock("http://api.open-notify.org")
       .get("/iss-now.json")
-      .socketDelay(5000) //4 seconds.
-      .replyWithError(apiSpaceData);
+      .socketDelay(5000) //5 seconds.
 
     let expectedResponse = null;
     const response = await request.get("/api/current-iss-location");
     expect(response.status).toEqual(502);
-    expect(response.body.spaceData).toEqual(expectedResponse);
+    expect(response.body).toEqual(expectedResponse);
   });
 });
 
@@ -130,7 +126,7 @@ describe("GET /api/current-weather-details", () => {
 });
 
 //Unauthorized 401
-describe('"GET /api/current-weather-details"', () => {
+describe("GET /api/current-weather-details", () => {
   test("should test for validity for API key", () => {
     let wrongApiKey = "12345";
     let lat = 78.317;
@@ -159,8 +155,8 @@ describe('"GET /api/current-weather-details"', () => {
 });
 
 //Bad Request 400
-describe('"GET /api/current-weather-details"', () => {
-  test("should test if lat and long are numbers and passed in", () => {
+describe("GET /api/current-weather-details", () => {
+  test("should test if lat and long are type numbers and are not null", () => {
     let lat = "string";
     let lng = -73.9712;
     //weather API error response for invalid key.
@@ -171,7 +167,7 @@ describe('"GET /api/current-weather-details"', () => {
 })
 
 //Unauthorized 404
-describe('"GET /api/current-weather-details"', () => {
+describe("GET /api/current-weather-details", () => {
   test("should test if valid data is returned from the weather API", () => {
     let lat = 831.00;
     let lng = -73.9712;
@@ -222,8 +218,24 @@ describe('"GET /api/current-weather-details"', () => {
     status: 404, 
     error: "No data available"
 }
-    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lat}`);
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lng}`);
     expect(response.status).toEqual(404)
     expect(response.body).toEqual(serverResponse)
 });
 
+//Bad Gateway 502
+describe("GET /api/current-weather-details", () => {
+  //test 2
+  test("should check if the weather API is down for any unexpected reason.", async () => {
+    let lat = 78.317;
+    let lng = -73.9712;
+    nock("http://api.open-notify.org")
+      .get("/iss-now.json")
+      .socketDelay(5000) //5 seconds.
+     
+    let expectedResponse = null;
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lng}`);
+    expect(response.status).toEqual(502);
+    expect(response.body).toEqual(expectedResponse);
+  });
+});
