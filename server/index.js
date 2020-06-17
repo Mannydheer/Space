@@ -10,12 +10,13 @@ const PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
 
 //endpoints.
-app.get("/", function (req, res) {
-  res.send("bitch");
+app.get("/api/currentISSLocation", function (req, res) {
+  res.send("hello");
 });
 
 //connection to server.
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
+});
 
 module.exports = { app };
