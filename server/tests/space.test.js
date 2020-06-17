@@ -122,12 +122,13 @@ describe("GET /api/current-weather-details", () => {
       temperature: -3,
     };
 
-    const response = await request.get("/api/current-weather-details");
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lat}`);
     expect(response.status).toEqual(200);
     expect(response.body.weatherInformation).toEqual(expectedResponse);
   });
 });
 
+//Unauthorized 401
 describe('"GET /api/current-weather-details"', () => {
   test("should test for validity for API key", () => {
     let wrongApiKey = "12345";
@@ -143,19 +144,27 @@ describe('"GET /api/current-weather-details"', () => {
           "You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]",
       },
     };
-    //server error response.
-    let serverResponse = {
-      status: 401,
-      error: "Invalid access key",
-      message:"You have not supplied a valid API Access Key. Please contact technical support.",
-  }
-    
-    nock("http://api.weatherstack.com")
+  //error for weather api
+  nock("http://api.weatherstack.com")
       .get(`/current?access_key=${wrongApiKey}&query=${lat},${lng}`)
-      .reply(200, apiErrorResponse);
+      .reply(101, apiErrorResponse);
   });
-
-  const response = await request.get("/api/current-weather-details");
-  expect(response.status).toEqual(401)
-  expect(response.body).toEqual(serverResponse)
+  let serverResponse = {
+    status: 401, error: "Invalid API key."
+}
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lat}`);
+    expect(response.status).toEqual(401)
+    expect(response.body).toEqual(serverResponse)
 });
+
+//Bad Request 400
+describe('"GET /api/current-weather-details"', () => {
+  test("should test if lat and long are numbers and passed in", () => {
+    let lat = "string";
+    let lng = -73.9712;
+    //weather API error response for invalid key.
+
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lat}`);
+  expect(response.status).toEqual(400);
+});
+})
