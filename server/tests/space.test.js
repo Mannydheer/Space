@@ -48,7 +48,7 @@ describe("GET /api/current-iss-location", () => {
     };
     nock("http://api.open-notify.org")
       .get("/iss-now.json")
-      .socketDelay(4000) //4 seconds.
+      .socketDelay(5000) //4 seconds.
       .replyWithError(apiSpaceData);
 
     let expectedResponse = null;
