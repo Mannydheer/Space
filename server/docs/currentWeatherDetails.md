@@ -1,82 +1,79 @@
-**Current Weather API  **
+Current Weather API 
 ----
 ```
-- Api will return the real-time weather data for a query with coordinates passed as lat/lng.
+Api will return the real-time weather data for a query with coordinates passed as lat/lng.
 ```
-* **URL** <br/>
-    * /api/currentWeatherDetails/`:coordinates`
-* **Resource Information**
+**ENDPOINT** 
+```
+/api/currentWeatherDetails/?lng=lng&lat=lat
+```
 
-    * Response Format: `JSON`
-    * Requires authentication? `Yes`
-    * Rate Limited? `1000requests/month`
-`
-* **URL Params** <br/>
-    * /api/currentWeatherDetails/`:coordinates`
-    <br/>
-        * **Required**: The `coordinates` can be passed location identifiers in order to get back the weather data.
-    
-        `1. coordinates (Lat/Lon)`</br>
-            locationQuery = [number, number]
+**Resource Information**
+```
+Response Format: JSON
+```
 
- 
-* **METHOD** 
+
+#### URL Parameters
+Field|Required|description
+:-----:|:-----:|:-----:
+lng|yes| Value of the longitude position.
+lat|yes| Value of the latitude position.
+
+**METHOD** 
 ```
 Request type: 
 - GET
 ```
-* **DATA Params** 
-```
-None
-```
+Status Response
+---
 
-* **Success Response:**
-  * **Code:** 200 Success <br />
-    **Content:** 
-    <img src="./Images/currentWeather.png"></img>
-    
-`
-
-* **Error Response:**
-  * **Code:** 601 CUSTOM ERROR (MISSING QUERY)<br />
-      **Content:** 
-      {
-  "success": false,
-  "error": {
-    "code": 601,
-    "type": "missing_query",
-    "info": "Please specify a valid location identifier using the query parameter."
+**Success Response:**
+```javascript
+Content: {
+  status: 200,
+  message: "Success getting weather Details",
+  weatherInformation: {
+  country: "Nigeria",
+  region: "Lagos",
+  lat: 6.453,
+  lon: 3.396,
+  temperature: 27,
   }
 }
      
-  * **Code:** 615 (REQUEST_FAILED) - Invalid PARAMS<br />
-      **Content:** 
-      {
-  "success": false,
-  "error": {
-    "code": 615,
-    "type": "request_failed",
-    "info": "Your API request failed. Please try again or contact support."
-  }
-}   
-  * **Code:** 101 (MISSING ACCESS KEY) - Invalid API KEY<br />
-      **Content:** 
-{
-  "success": false,
-  "error": {
-    "code": 101,
-    "type": "missing_access_key",
-    "info": "You have not supplied an API Access Key. [Required format: access_key=YOUR_ACCESS_KEY]"
-  }
-}
+```
+
+**Error Response:**
+
+if
+* longitude or latitude value or both are missing.
+* longitude or latitude value is not a number.
+```javascript
+  Code: 400 BAD REQUEST
+  Content: {status: 400, error: "Missing/Invalid coordinates."}
+```
+Api key is invalid. 
+
+```javascript
+  Code: 401 UNAUTHORIZED
+  Content: {status: 401, error: "Invalid API key."}
+```
+No data returned from the API.
+
+```javascript
+  Code: 404 - NOT FOUND
+  Content: {status: 404, error: "No data available"} 
+```
+Request to the API failed.
+```javascript
+  Code: 502 BAD GATEWAY
+  Content: {status: 404, error: "Request to the API failed"}
+```
 
 
-
-* **Sample Call** 
-
-  ```javascript
-  let locationQuery = {lat: 40.7831,lng: -73.9712}
-
-    fetch(`/api/currentWeatherDetails/${locationQuery}`)
-  ```
+**Sample Call** 
+```javascript
+fetch(`/api/currentWeatherDetails/?lat=${40.7831}&lng=${-73.9712}`);
+```
 

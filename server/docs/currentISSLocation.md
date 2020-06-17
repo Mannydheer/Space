@@ -1,51 +1,53 @@
-**Current ISS Location **
+Current ISS Location 
 ----
 ```
-- Api will return the current location of the ISS in JSON data.
-- Returns the latitude and longitude and unix timestamp. 
+Api will return the current location of the ISS in JSON data.
 ```
-* **Resource URL** <br/>
-    * /api/currentISSLocation
-* **Resource Information**
+**ENDPOINT** 
+```
+/api/currentISSLocation
+```
+**Resource Information**
+```
+Response Format: JSON
+```
 
-    * Response Format: `JSON`
-    * Requires authentication? `No`
-    * Rate Limited? `No, but best to do requests once every 5 seconds. (Avoid server strain)`
-`
-* **URL** <br/>
- /api/currentISSLocation
-* **METHOD** 
+#### URL Parameters
+No parameters.
+**METHOD** 
 ```
 Request type: 
 - GET
 ```
-
-* **DATA Params** 
-```
-None
-```
-
-* **Success Response:**
-  * **Code:** 200 <br />
-    **Content:** `{
-  "iss_position": {
-    "longitude": "-30.2983",
-    "latitude": "4.6062"
-  },
-  "timestamp": 1592250551,
-  "message": "success"
+Status Response
+---
+**Success Response:**
+```javascript
+Content: {
+  status: 200,
+  message: "Success getting ISS space station coordinates"m
+  spaceLocationInformation: {
+  lon: -30.2983,
+  lat: 4.6062
+  timestamp: 1592250551,
+  }
 }
-`
+```
+**Error Response:**
+No data returned from the API.
 
-* **Error Response:**
-  * **Code:** 503 <br />
-  Service Unavailable error
-`
+```javascript
+  Code: 404 - NOT FOUND
+  Content: {status: 404, error: "No data available"} 
+```
+Request to the API failed.
+```javascript
+  Code: 502 BAD GATEWAY
+  Content: {status: 404, error: "Received invalid response from API."}
+```
+**Sample Call** 
 
-
-* **Sample Call** 
-
-  ```javascript
-    fetch("/api/currentISSLocation")
-  ```
+```javascript
+  fetch("/api/currentISSLocation")
+```
 
