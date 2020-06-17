@@ -11,11 +11,14 @@ const PORT = process.env.PORT || 4000;
 app.use(bodyParser.json());
 
 //endpoints.
-app.get("/api/currentISSLocation", async function (req, res) {
-  let apiResponse = await fetch("http://api.open-notify.org/iss-now.json");
-  let jsonApi = await apiResponse.json();
-  res.status(500).json(jsonApi);
+//space statio
+app.get("/api/current-iss-location", async function (req, res) {
+  res.status(200).json("message");
 });
+//weather
+// app.get("/api/currentWeatherDetails", async function (req, res) {
+//   res.status(200).json(jsonApi);
+// });
 
 //connection to server.
 app.listen(PORT, () => {

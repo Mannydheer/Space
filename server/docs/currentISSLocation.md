@@ -7,7 +7,7 @@ Api will return the current location of the ISS in JSON data.
 **ENDPOINT**
 
 ```
-/api/currentISSLocation
+/api/current-iss-location
 ```
 
 **Resource Information**
@@ -55,5 +55,5 @@ Request to the API failed.
 **Sample Call**
 
 ```javascript
-fetch("/api/currentISSLocation");
+fetch("/api/current-iss-location");
 ```

@@ -5,7 +5,7 @@ const nock = require("nock");
 
 // ----------------------------/api/currentISSLocation --------------------
 // @desc Test for 200.
-describe("GET /api/currentISSLocation", () => {
+describe("GET /api/current-iss-location", () => {
   let apiSpaceData = {
     iss_position: {
       latitude: "4.6062",
@@ -24,7 +24,7 @@ describe("GET /api/currentISSLocation", () => {
     const expectedLat = "4.6062";
     const expectedTimeStamp = "1592412467";
     //reqeust
-    const response = await request.get("/api/currentISSLocation");
+    const response = await request.get("/api/current-iss-location");
     //expected response test.
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
@@ -39,7 +39,7 @@ describe("GET /api/currentISSLocation", () => {
   });
 });
 
-describe("GET /api/currentISSLocation", () => {
+describe("GET /api/current-iss-location", () => {
   //test 2
   test("should will check if the 3rd party party fails to send data", async () => {
     let apiSpaceData = {
@@ -48,12 +48,11 @@ describe("GET /api/currentISSLocation", () => {
     };
     nock("http://api.open-notify.org")
       .get("/iss-now.json")
-      .reply(502, apiSpaceData);
+      .socketDelay(4000) //4 seconds.
+      .replyWithError(apiSpaceData);
 
     let expectedResponse = null;
-    const response = await request.get("/api/currentISSLocation");
-
-    expect(response.status).toBe(502);
+    const response = await request.get("/api/current-iss-location");
     expect(response.body.spaceData).toEqual(expectedResponse);
   });
 });
