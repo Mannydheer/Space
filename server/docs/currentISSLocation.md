@@ -16,7 +16,6 @@
 Request type: 
 - GET
 ```
-
 * **DATA Params** 
 ```
 None
@@ -37,15 +36,15 @@ Content: {
 * **Error Response:**
 ```javascript
   Code: 404 - NOT FOUND
-  Content: null || undefined.
+  Content: {status: 404, error: "No data available"} 
 ```
 ```javascript
   Code: 502 BAD GATEWAY
-  Content: {status: 404, error: Received invalid response from API.}
+  Content: {status: 404, error: "Received invalid response from API."}
 ```
 * **Sample Call** 
 
-  ```javascript
-    fetch("/api/currentISSLocation")
-  ```
+```javascript
+  fetch("/api/currentISSLocation")
+```
 
