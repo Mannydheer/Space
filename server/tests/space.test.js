@@ -60,6 +60,7 @@ describe("GET /api/current-iss-location", () => {
 
 //----------------------WEATHER TESTS.--------------
 
+//Success response 200
 describe("GET /api/current-weather-details", () => {
   //test 2
   test("should check for a 200 response", async () => {
@@ -164,7 +165,65 @@ describe('"GET /api/current-weather-details"', () => {
     let lng = -73.9712;
     //weather API error response for invalid key.
 
-    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lat}`);
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lng}`);
   expect(response.status).toEqual(400);
 });
 })
+
+//Unauthorized 404
+describe('"GET /api/current-weather-details"', () => {
+  test("should test if valid data is returned from the weather API", () => {
+    let lat = 831.00;
+    let lng = -73.9712;
+    //weather API error response for invalid key.
+    let apiErrorResponse = {
+      "request": {
+        "type": "LatLon",
+        "query": "Lat 831.00 and Lon -73.97",
+        "language": "en",
+        "unit": "m"
+      },
+      "location": {
+        "name": null,
+        "country": null,
+        "region": null,
+        "lat": null,
+        "lon": null,
+        "timezone_id": "",
+        "localtime": "2020-06-17 23:29",
+        "localtime_epoch": 1592436540,
+        "utc_offset": ""
+      },
+      "current": {
+        "observation_time": null,
+        "temperature": 0,
+        "weather_code": 0,
+        "weather_icons": [],
+        "weather_descriptions": [],
+        "wind_speed": 0,
+        "wind_degree": 0,
+        "wind_dir": null,
+        "pressure": 0,
+        "precip": 0,
+        "humidity": 0,
+        "cloudcover": 0,
+        "feelslike": 0,
+        "uv_index": 0,
+        "visibility": 0,
+        "is_day": null
+      }
+    }
+  //error for weather api
+  nock("http://api.weatherstack.com")
+      .get(`/current?access_key=${process.env.WEATHER_API_KEY}&query=${lat},${lng}`)
+      .reply(200,apiErrorResponse);
+  });
+  let serverResponse = {
+    status: 404, 
+    error: "No data available"
+}
+    const response = await request.get(`/api/current-weather-details?lng=${lat}&lat=${lat}`);
+    expect(response.status).toEqual(404)
+    expect(response.body).toEqual(serverResponse)
+});
+
