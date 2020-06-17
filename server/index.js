@@ -13,12 +13,11 @@ app.use(bodyParser.json());
 //endpoints.
 //space statio
 app.get("/api/current-iss-location", async function (req, res) {
-  res.status(200).json("message");
+  res.status(200).json("space");
 });
-//weather
-// app.get("/api/currentWeatherDetails", async function (req, res) {
-//   res.status(200).json(jsonApi);
-// });
+app.get("/api/current-weather-details", async function (req, res) {
+  res.status(200).json("weather");
+});
 
 //connection to server.
 app.listen(PORT, () => {
