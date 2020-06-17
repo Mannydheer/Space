@@ -1,27 +1,35 @@
-Current ISS Location 
-----
+## Current ISS Location
+
 ```
 Api will return the current location of the ISS in JSON data.
 ```
-**ENDPOINT** 
+
+**ENDPOINT**
+
 ```
 /api/currentISSLocation
 ```
+
 **Resource Information**
+
 ```
 Response Format: JSON
 ```
 
 #### URL Parameters
+
 No parameters.
-**METHOD** 
+**METHOD**
+
 ```
-Request type: 
+Request type:
 - GET
 ```
-Status Response
----
+
+## Status Response
+
 **Success Response:**
+
 ```javascript
 Content: {
   status: 200,
@@ -33,21 +41,24 @@ Content: {
   }
 }
 ```
+
 **Error Response:**
 No data returned from the API.
 
 ```javascript
   Code: 404 - NOT FOUND
-  Content: {status: 404, error: "No data available"} 
+  Content: {status: 404, error: "No data available"}
 ```
+
 Request to the API failed.
+
 ```javascript
   Code: 502 BAD GATEWAY
   Content: {status: 404, error: "Received invalid response from API."}
 ```
-**Sample Call** 
+
+**Sample Call**
 
 ```javascript
-  fetch("/api/currentISSLocation")
+fetch("/api/currentISSLocation");
 ```
-
