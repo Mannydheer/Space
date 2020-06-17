@@ -6,10 +6,7 @@
 * **URL** <br/>
     * /api/currentWeatherDetails/`:coordinates`
 * **Resource Information**
-
     * Response Format: `JSON`
-    * Requires authentication? `Yes`
-    * Rate Limited? `1000requests/month`
 `
 * **URL Params** <br/>
     * /api/currentWeatherDetails/`:coordinates`
@@ -31,52 +28,68 @@ None
 ```
 
 * **Success Response:**
-  * **Code:** 200 Success <br />
-    **Content:** 
-    <img src="./Images/currentWeather.png"></img>
-    
-`
-
-* **Error Response:**
-  * **Code:** 601 CUSTOM ERROR (MISSING QUERY)<br />
-      **Content:** 
-      {
-  "success": false,
-  "error": {
-    "code": 601,
-    "type": "missing_query",
-    "info": "Please specify a valid location identifier using the query parameter."
+```javascript
+  Code: 200 Success 
+  Content: {
+  "request": {
+    "type": "City",
+    "query": "Lagos, Nigeria",
+    "language": "en",
+    "unit": "m"
+  },
+  "location": {
+    "name": "Lagos",
+    "country": "Nigeria",
+    "region": "Lagos",
+    "lat": "6.453",
+    "lon": "3.396",
+    "timezone_id": "Africa\/Lagos",
+    "localtime": "2020-06-17 01:25",
+    "localtime_epoch": 1592357100,
+    "utc_offset": "1.0"
+  },
+  "current": {
+    "observation_time": "12:25 AM",
+    "temperature": 27,
+    "weather_code": 116,
+    "weather_icons": [
+      "https:\/\/assets.weatherstack.com\/images\/wsymbols01_png_64\/wsymbol_0004_black_low_cloud.png"
+    ],
+    "weather_descriptions": [
+      "Partly cloudy"
+    ],
+    "wind_speed": 0,
+    "wind_degree": 212,
+    "wind_dir": "SSW",
+    "pressure": 1012,
+    "precip": 0,
+    "humidity": 89,
+    "cloudcover": 25,
+    "feelslike": 31,
+    "uv_index": 1,
+    "visibility": 10,
+    "is_day": "no"
   }
 }
      
-  * **Code:** 615 (REQUEST_FAILED) - Invalid PARAMS<br />
-      **Content:** 
-      {
-  "success": false,
-  "error": {
-    "code": 615,
-    "type": "request_failed",
-    "info": "Your API request failed. Please try again or contact support."
-  }
-}   
-  * **Code:** 101 (MISSING ACCESS KEY) - Invalid API KEY<br />
-      **Content:** 
-{
-  "success": false,
-  "error": {
-    "code": 101,
-    "type": "missing_access_key",
-    "info": "You have not supplied an API Access Key. [Required format: access_key=YOUR_ACCESS_KEY]"
-  }
-}
+```
 
+* **Error Response:**
+```javascript
+  Code: 400 BAD REQUEST
+  Content: {status: 400, error: Missing/Invalid coordinates.}
+```
+```javascript
+  Code: 502 BAD GATEWAY
+  Content: {status: 404, error: Received invalid response from API.}
+```
 
 
 * **Sample Call** 
 
-  ```javascript
-  let locationQuery = {lat: 40.7831,lng: -73.9712}
+```javascript
+let locationQuery = {lat: 40.7831,lng: -73.9712};
 
-    fetch(`/api/currentWeatherDetails/${locationQuery}`)
-  ```
+fetch(`/api/currentWeatherDetails/${locationQuery}`);
+```
 

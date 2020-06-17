@@ -26,8 +26,9 @@ None
 ```
 
 * **Success Response:**
-  * **Code:** 200 <br />
-    **Content:** `{
+```
+Code: 200
+Content: {
   "iss_position": {
     "longitude": "-30.2983",
     "latitude": "4.6062"
@@ -35,12 +36,14 @@ None
   "timestamp": 1592250551,
   "message": "success"
 }
-`
+```
 
 * **Error Response:**
-  * **Code:** 503 <br />
-  Service Unavailable error
-`
+```
+Code: 404 - NOT FOUND
+Content: null || undefined.
+
+```
 
 
 * **Sample Call** 
