@@ -1,3 +1,9 @@
 import { Typings } from "../typings";
 
-const spaceModel = (data: Typings.RemoteSpaceData) => {};
+export const spaceModel = (data: Typings.RemoteSpaceData) => {
+  return {
+    lon: data.iss_position.longitude,
+    lat: data.iss_position.latitude,
+    timestamp: data.timestamp,
+  };
+};

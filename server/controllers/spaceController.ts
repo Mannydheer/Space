@@ -11,7 +11,7 @@ export const getIssPosition = async (
     if (!serviceResponse) {
       throw new Error("502 bad request.");
     }
-    console.log(serviceResponse);
+    // console.log(serviceResponse);
   } catch (error) {
     next(error);
   }

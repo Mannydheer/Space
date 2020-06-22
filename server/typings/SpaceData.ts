@@ -1,5 +1,8 @@
 export interface RemoteSpaceData {
-  lon: string;
-  lat: string;
+  message: string;
+  iss_position: {
+    latitude: string;
+    longitude: string;
+  };
   timestamp: number;
 }
