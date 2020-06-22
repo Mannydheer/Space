@@ -1,7 +1,7 @@
-import express, { Request, Response, Application } from 'express';
+import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 require("dotenv").config();
-const app: Application = express();
+const app = express();
 
 const PORT = process.env.PORT || 4000;
 
