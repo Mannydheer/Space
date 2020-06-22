@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const fetch = require("isomorphic-fetch");
+// const fetch = require("isomorphic-fetch");
 require("dotenv").config();
 const app = express();
 
